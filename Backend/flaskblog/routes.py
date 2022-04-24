@@ -25,6 +25,14 @@ def general():
 def about():
     return render_template('about.html', title='About')
 
+<<<<<<< HEAD
+=======
+@app.route("/general")
+def general():
+    return render_template('general.html', title='general')
+
+
+>>>>>>> d3e585fb138cfbdf170cfae9378b3b32d6ea855e
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
