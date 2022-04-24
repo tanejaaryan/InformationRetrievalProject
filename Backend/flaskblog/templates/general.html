@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+
+<title>Search Course by Name/Code</title>
+ <body>
+    <h1>Search Course by Name/Code</h1>
+</body>
+
+<form>
+<div class="ByCode">
+    <label for="ByCode">Search By Course Code</label><br>
+    <input type="text" id="ByCode" name="ByCode"><br>
+    <br>
+</div>
+<br><br>
+<div class="By_Name">
+<label for="By_Name">Search by Course Name :</label><br>
+<input type="text" id="By_Name" name="By_Name"><br>
+<br>
+</div>
+
+<div class="Submit">
+<input type="submit" value="Submit">
+</div>
+</form>
+</html>
+
+{% endblock content %}
