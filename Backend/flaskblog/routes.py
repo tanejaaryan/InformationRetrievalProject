@@ -3,17 +3,27 @@ from flaskblog import app, db, bcrypt
 from flaskblog.forms import RegistrationForm, LoginForm
 from flaskblog.models import User
 from flask_login import login_user, current_user, logout_user, login_required
-
+from flaskblog.script import func
+    
 @app.route("/")
 @app.route("/home")
 def home():
     return render_template('home.html')
 
+@app.route('/', methods=['POST'])
+@app.route('/home', methods=['POST'])
+def my_form_post():
+    variable = request.form['variable']
+    output = func(variable)
+    return render_template('home.html', output = output)
+
+@app.route("/general")
+def general():
+    return render_template('general.html', title='general')
 
 @app.route("/about")
 def about():
     return render_template('about.html', title='About')
-
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
