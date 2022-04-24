@@ -1,88 +1,127 @@
-{% extends "layout.html" %}
+﻿{% extends "layout.html" %}
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="utf-8">
 
 <title>Query Search & Recommendation for Courses</title>
- <body>
+<body>
     <h1>Query Search & Recommendation for Courses</h1>
 </body>
 
 <form method="POST">
-<div class="PrevCourse">
-    <label for="PreviousCourses">Previous Courses:</label><br>
-    <input type="text" id="PreviousCourses" name="PreviousCourses"><br>
-    <br>
-</div>
 
-<div class="Branch">
-<p>Branch/Department of Courses</p>
+    <div class="PrevCourse">
+        <label for="PreviousCourses">Previous Courses:</label><br>
+        <input type="text" id="PreviousCourses" name="PreviousCourses"><br>
+        <br>
+    </div>
 
-<input type="checkbox" id="CSE" name="CSE" value="CSE">
-<label for="CSE"> CSE </label> <br>
+    <div class="Branch">
+        <p>Branch/Department of Courses</p>
 
-<input type="checkbox" id="DES" name="DES" value="DES">
-<label for="DES"> DES </label> <br>
+        <input type="checkbox" id="CSE" name="CSE" value="CSE">
+        <label for="CSE"> CSE </label> <br>
 
-<input type="checkbox" id="MTH" name="MTH" value="MTH">
-<label for="MTH"> MTH </label> <br>
+        <input type="checkbox" id="DES" name="DES" value="DES">
+        <label for="DES"> DES </label> <br>
 
-<input type="checkbox" id="ECE" name="ECE" value="ECE">
-<label for="ECE"> ECE </label> <br>
+        <input type="checkbox" id="MTH" name="MTH" value="MTH">
+        <label for="MTH"> MTH </label> <br>
 
-<input type="checkbox" id="BIO" name="BIO" value="BIO">
-<label for="BIO"> BIO </label> <br>
+        <input type="checkbox" id="ECE" name="ECE" value="ECE">
+        <label for="ECE"> ECE </label> <br>
 
-<input type="checkbox" id="SSH" name="SSH" value="SSH">
-<label for="SSH"> SSH </label> <br>
+        <input type="checkbox" id="BIO" name="BIO" value="BIO">
+        <label for="BIO"> BIO </label> <br>
 
-<input type="checkbox" id="Others" name="Others" value="Others">
-<label for="Others"> Others </label> <br>
+        <input type="checkbox" id="SSH" name="SSH" value="SSH">
+        <label for="SSH"> SSH </label> <br>
 
-<br><br>
-</div>
+        <input type="checkbox" id="Others" name="Others" value="Others">
+        <label for="Others"> Others </label> <br>
 
-<div class="Interest_Topics">
-<label for="Interests">Interests:</label><br>
-<input type="text" id="Interests" name="Interests"><br>
-<br>
-</div>
+        <br><br>
+    </div>
 
-<div class="Majority">
-<p> Component in Majority : </p>
-<input type="radio" id="Assignments" name="Assignments" value="Assignments">
-<label for="Assignments">Assignments</label> <br>
-<input type="radio" id="Quizzes" name="Quizzes" value="Quizzes">
-<label for="Quizzes">Quizzes</label> <br>
-<input type="radio" id="Projects" name="Projects" value="Projects">
-<label for="Projects">Projects</label> <br>
-<input type="radio" id="Exams" name="Exams" value="Exams">
-<label for="Exams">Exams</label> <br>
-<br><br>
-</div>
-<div class="Minority">
-<p> Component in Minority : </p>
-<input type="radio" id="Assignments2" name="Assignments2" value="Assignments2">
-<label for="Assignments2">Assignments</label> <br>
-<input type="radio" id="Quizzes2" name="Quizzes2" value="Quizzes2">
-<label for="Quizzes2">Quizzes</label> <br>
-<input type="radio" id="Projects2" name="Projects2" value="Projects2">
-<label for="Projects2">Projects</label> <br>
-<input type="radio" id="Exams2" name="Exams2" value="Exams2">
-<label for="Exams2">Exams</label> <br>
-<br><br>
-</div>
-<div class="Submit">
-<input type="submit" value="Submit">
-</div>
+    <div class="Level">
+        <p>Course Level</p>
+
+        <input type="checkbox" id="1" name="1" value="1">
+        <label for="1"> 1 </label> <br>
+
+        <input type="checkbox" id="2" name="2" value="2">
+        <label for="2"> 2 </label> <br>
+
+        <input type="checkbox" id="3" name="3" value="3">
+        <label for="3"> 3 </label> <br>
+
+        <input type="checkbox" id="4" name="4" value="4">
+        <label for="4"> 4 </label> <br>
+
+        <input type="checkbox" id="5" name="5" value="5">
+        <label for="5"> 5 </label> <br>
+
+        <input type="checkbox" id="6" name="6" value="6">
+        <label for="6"> 6 </label> <br>
+
+        <br><br>
+    </div>
+
+    <div class="Credits">
+        <p>Number of credits for the Courses</p>
+
+        <input type="checkbox" id="2" name="2" value="2">
+        <label for="2"> 2 </label> <br>
+
+        <input type="checkbox" id="4" name="4" value="4">
+        <label for="4"> 4 </label> <br>
+
+        <br><br>
+    </div>
+
+    <div class="Interest_Topics">
+        <label for="Interests">Interests:</label><br>
+        <input type="text" id="Interests" name="Interests"><br>
+        <br>
+    </div>
+
+    <div class="Exclude_Topics">
+        <label for="Exclude_Topics">Exclude Topics:</label><br>
+        <input type="text" id="Exclude_Topics" name="Exclude_Topics"><br>
+        <br>
+    </div>
+
+    <div class="Majority">
+        <p> Component in Majority : </p>
+        <input type="radio" id="Assignments" name="Assignments" value="Assignments">
+        <label for="Assignments">Assignments</label> <br>
+        <input type="radio" id="Quizzes" name="Quizzes" value="Quizzes">
+        <label for="Quizzes">Quizzes</label> <br>
+        <input type="radio" id="Projects" name="Projects" value="Projects">
+        <label for="Projects">Projects</label> <br>
+        <input type="radio" id="Exams" name="Exams" value="Exams">
+        <label for="Exams">Exams</label> <br>
+        <br><br>
+    </div>
+    <div class="Minority">
+        <p> Component in Minority : </p>
+        <input type="radio" id="Assignments2" name="Assignments2" value="Assignments2">
+        <label for="Assignments2">Assignments</label> <br>
+        <input type="radio" id="Quizzes2" name="Quizzes2" value="Quizzes2">
+        <label for="Quizzes2">Quizzes</label> <br>
+        <input type="radio" id="Projects2" name="Projects2" value="Projects2">
+        <label for="Projects2">Projects</label> <br>
+        <input type="radio" id="Exams2" name="Exams2" value="Exams2">
+        <label for="Exams2">Exams</label> <br>
+        <br><br>
+    </div>
+    <div class="Submit">
+        <input type="submit" value="Submit">
+    </div>
 </form>
 
 
 
 </html>
-
-
-
-
 {% endblock content %}
