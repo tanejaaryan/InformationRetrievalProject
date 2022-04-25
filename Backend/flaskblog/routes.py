@@ -4,7 +4,7 @@ from flaskblog.forms import RegistrationForm, LoginForm
 from flaskblog.models import User
 from flask_login import login_user, current_user, logout_user, login_required
 from flaskblog.script import func
-    
+ 
 @app.route("/")
 @app.route("/home")
 def home():
@@ -18,11 +18,34 @@ def my_form_post():
     return render_template('home.html', output = output)
 
 @app.route("/general")
+@app.route('/general', methods=['GET','POST'])
 def general():
+    code = None
+    name = None
+    if request.method == 'POST':
+        code = request.form['ByCode']
+        name = request.form['By_Name']
+        print(code + name)
     return render_template('general.html', title='general')
 
 @app.route("/about")
+@app.route('/about', methods=['GET','POST'])
 def about():
+    branch = []
+    level = []
+    interests = None
+    exclude = None
+    major_comp = []
+    minor_comp = []
+    if request.method == 'POST':
+        branch = request.form.getlist('Branch')
+        level = request.form.getlist('Level')
+        interests = request.form['Interests']
+        exclude = request.form['Exclude_Topics']
+        major_comp = request.form.getlist('Majority')
+        minor_comp = request.form.getlist('Minority')
+        #print(major_comp)
+        #print(minor_comp)
     return render_template('about.html', title='About')
 
 @app.route("/register", methods=['GET', 'POST'])
