@@ -3,7 +3,8 @@ from flaskblog import app, db, bcrypt
 from flaskblog.forms import RegistrationForm, LoginForm
 from flaskblog.models import User
 from flask_login import login_user, current_user, logout_user, login_required
-from flaskblog.script import func
+from flaskblog.script import func, func1, func2
+import pandas as pd
  
 @app.route("/")
 @app.route("/home")
@@ -17,6 +18,10 @@ def my_form_post():
     output = func(variable)
     return render_template('home.html', output = output)
 
+@app.route('/result/result')
+def analysis(x):
+    return render_template("result.html",name="result", data=x.to_html())
+
 @app.route("/general")
 @app.route('/general', methods=['GET','POST'])
 def general():
@@ -26,27 +31,56 @@ def general():
         code = request.form['ByCode']
         name = request.form['By_Name']
         print(code + name)
+        df = func1(code)
+        print(name)
+        df1 = func2(name)
+        int_df = pd.DataFrame()
+        print(df)
+        print(df1)
+        if len(code) != 0 and len(name) != 0:
+            int_df = pd.merge(df1, df, how ='inner', on =df.columns)
+        elif len(code) != 0:
+            int_df = df
+        else:
+            int_df = df1
+        print(df)
+        return analysis(df)
     return render_template('general.html', title='general')
+
+
 
 @app.route("/about")
 @app.route('/about', methods=['GET','POST'])
 def about():
     branch = []
     level = []
+    credits = []
     interests = None
-    exclude = None
-    major_comp = []
-    minor_comp = []
+    prev_courses = None
+    #exclude = None
+    major_comp = None
+    minor_comp = None
     if request.method == 'POST':
+        print("segrfd")
         branch = request.form.getlist('Branch')
         level = request.form.getlist('Level')
+        credits = request.form.getlist('Credits')
         interests = request.form['Interests']
-        exclude = request.form['Exclude_Topics']
-        major_comp = request.form.getlist('Majority')
-        minor_comp = request.form.getlist('Minority')
-        #print(major_comp)
-        #print(minor_comp)
-    return render_template('about.html', title='About')
+        prev_courses = request.form['PreviousCourses']
+        #exclude = request.form['Exclude_Topics']
+        m = request.form.getlist('Majority')
+        if len(m) > 0:
+            major_comp = m[0]
+        m = request.form.getlist('Minority')
+        if len(m) > 0:
+            minor_comp = m[0]
+    #return render_template('about.html', recommendation=func(""))
+
+        df = func(branch, interests, major_comp, minor_comp, level, prev_courses, credits)
+        print(df)
+        return analysis(df)
+        #return render_template('about.html',  tables=[df.to_html(classes='data')], titles=df.columns.values)
+    return render_template('about.html', title='about')
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():

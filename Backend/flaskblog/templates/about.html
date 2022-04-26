@@ -5,17 +5,32 @@
 <meta charset="utf-8">
 
 <title>Query Search & Recommendation for Courses</title>
+<style>
+    .popup{
+    background-color: #ffffff;
+    width: 420px;
+    padding: 30px 40px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+    border-radius: 8px;
+    display: none;
+    font-family: "Poppins",sans-serif;
+    text-align: center;
+    }
+</style>
 <body>
     <h1>Query Search & Recommendation for Courses</h1>
 </body>
 
-<form method="POST">
+<form method="POST" >
 
-    <!--<div class="PrevCourse">
+    <div class="PrevCourse">
         <label for="PreviousCourses">Previous Courses:</label><br>
         <input type="text" id="PreviousCourses" name="PreviousCourses"><br>
         <br>
-    </div>-->
+    </div>
 
     <div class="Branch">
         <p>Branch/Department of Courses</p>
@@ -68,17 +83,17 @@
         <br><br>
     </div>
 
-    <!--<div class="Credits">
+    <div class="Credits">
         <p>Number of credits for the Courses</p>
 
-        <input type="checkbox" id="2" name="2" value="2">
+        <input type="checkbox" id="2" name="Credits" value="2">
         <label for="2"> 2 </label> <br>
 
-        <input type="checkbox" id="4" name="4" value="4">
+        <input type="checkbox" id="4" name="Credits" value="4">
         <label for="4"> 4 </label> <br>
 
         <br><br>
-    </div>-->
+    </div>
 
     <div class="Interest_Topics">
         <label for="Interests">Interests:</label><br>
@@ -86,11 +101,11 @@
         <br>
     </div>
 
-    <div class="Exclude_Topics">
+    <!--<div class="Exclude_Topics">
         <label for="Exclude_Topics">Exclude Topics:</label><br>
         <input type="text" id="Exclude_Topics" name="Exclude_Topics"><br>
         <br>
-    </div>
+    </div>-->
 
     <div class="Majority">
         <p> Component in Majority : </p>
@@ -116,9 +131,43 @@
         <label for="Exams">Exams</label> <br>
         <br><br>
     </div>
-    <div class="Submit">
+    <div class="Submit" >
         <input type="submit" value="Submit">
     </div>
+
+    <!--<div id="my_form">
+        <button id="nextStep">Submit</button>
+    </div>-->
+
+    <div id="thank_you" style="display: none;">
+        <h2>Recommendations for you?</h2>
+        
+        {% for table in tables %}
+        {{titles[loop.index]}}
+        {{ table|safe }}
+        {% endfor %}
+    </div>
+
+    <script>
+        var nextStep = document.querySelector('#nextStep');
+
+        nextStep.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('my_form').style.display = 'none';
+
+            // Show thank you message element
+            document.getElementById('thank_you').style.display = 'block';
+        });
+    </script>
+
+    <!--<div id="popup1" class="overlay">
+        <div class="popup">
+            <h2>Recommendations for you?</h2>
+            <a class="close" href="#">&times;</a>
+            <div id="recommendation" class="content">
+            </div>
+        </div>
+    </div>-->
 </form>
 
 

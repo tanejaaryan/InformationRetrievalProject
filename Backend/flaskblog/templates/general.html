@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+﻿{% extends "layout.html" %}
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -9,23 +9,42 @@
     <h1>Search Course by Name/Code</h1>
 </body>
 
-<form>
-<div class="ByCode">
-    <label for="ByCode">Search By Course Code</label><br>
-    <input type="text" id="ByCode" name="ByCode"><br>
-    <br>
-</div>
-<br><br>
-<div class="By_Name">
-<label for="By_Name">Search by Course Name :</label><br>
-<input type="text" id="By_Name" name="By_Name"><br>
-<br>
-</div>
+ <form method="POST">
+     <div class="ByCode">
+         <label for="ByCode">Search By Course Code</label><br>
+         <input type="text" id="ByCode" name="ByCode"><br>
+         <br>
+     </div>
+     <br><br>
+     <div class="By_Name">
+         <label for="By_Name">Search by Course Name :</label><br>
+         <input type="text" id="By_Name" name="By_Name"><br>
+         <br>
+     </div>
 
-<div class="Submit">
-<input type="submit" value="Submit">
-</div>
-</form>
+     <div class="Submit">
+         <input type="submit" value="Submit">
+     </div>
+     <div id="thank_you" style="display: none;">
+         <h2>Recommendations for you?</h2>
+
+         {% for table in tables %}
+         {{titles[loop.index]}}
+         {{ table|safe }}
+         {% endfor %}
+     </div>
+
+     <script>var nextStep = document.querySelector('#nextStep');
+
+        nextStep.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('my_form').style.display = 'none';
+
+            // Show thank you message element
+            document.getElementById('thank_you').style.display = 'block';
+        });</script>
+
+ </form>
 </html>
 
 {% endblock content %}
