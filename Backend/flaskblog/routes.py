@@ -44,7 +44,7 @@ def general():
         else:
             int_df = df1
         print(df)
-        return analysis(df)
+        return analysis(int_df)
     return render_template('general.html', title='general')
 
 
