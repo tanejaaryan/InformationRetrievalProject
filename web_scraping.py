@@ -155,6 +155,7 @@ for i in range(len(xlsx_files)):
         dictionary_xx["level_of_course"] = int(actual_course_code[-3])
         dictionary_xx["mandatory_prereqs"] = mandatory_prereqs
         dictionary_xx["department"] = actual_course_code[:3]
+        if (dictionary_assessment_plan)
         dictionary_course_name[xlsx_files[i]] = dictionary_xx
         # print(dictionary_xx)
     except Exception as e:
