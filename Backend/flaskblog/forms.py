@@ -10,6 +10,10 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
+    roll_number = StringField('Roll number', validators=[DataRequired()])
+    branch = StringField('Branch acronym', validators=[DataRequired()])
+    courses_done = StringField('Courses done')
+    interests = StringField('Interests')
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
