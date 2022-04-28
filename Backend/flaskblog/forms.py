@@ -12,8 +12,7 @@ class RegistrationForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     roll_number = StringField('Roll number', validators=[DataRequired()])
     branch = StringField('Branch acronym', validators=[DataRequired()])
-    courses_done = StringField('Courses done')
-    interests = StringField('Interests')
+    courses_done = StringField('Course codes of courses done', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')

@@ -59,6 +59,19 @@
                     {% endif %}
                 </div>
                 <div class="form-group">
+                    {{ form.courses_done.label(class="form-control-label") }}
+                    {% if form.courses_done.errors %}
+                        {{ form.courses_done(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.courses_done.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.courses_done(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
                     {{ form.password.label(class="form-control-label") }}
                     {% if form.password.errors %}
                         {{ form.password(class="form-control form-control-lg is-invalid") }}
