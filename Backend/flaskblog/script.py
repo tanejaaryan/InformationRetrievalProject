@@ -216,7 +216,7 @@ def func( Branches, Interests, Major, Minor, Levels, Courses, Credits):
       DATA = data[ data.project_eval >=20]
 
     elif Focus.find("exams")>=0:
-      print("exams")
+#       print("exams")
       DATA = data[ data.mid_eval + data.end_eval >=35]
 
     return DATA
@@ -276,12 +276,12 @@ def func( Branches, Interests, Major, Minor, Levels, Courses, Credits):
 ################################
 
   def branch_retrieve( Branches):
-    print(Branches)
+#     print(Branches)
     DATA = pd.DataFrame()
     
     for Branch in Branches:
       DATA = DATA.append(data[ data.department == Branch])
-      print(DATA)
+#       print(DATA)
 
     return DATA
 
@@ -302,7 +302,7 @@ def func( Branches, Interests, Major, Minor, Levels, Courses, Credits):
   def Credits_retreive(Credits):
 
     DATA = pd.DataFrame()
-    print(Credits)
+#     print(Credits)
     for c in Credits:
       DATA = DATA.append( data[ data.course_credits == int(c)])
 
@@ -311,33 +311,34 @@ def func( Branches, Interests, Major, Minor, Levels, Courses, Credits):
 #################################
 
   D1 = branch_retrieve( Branches)
-  print(D1)
+#   print(D1)
 
   Courses = preprocess( Courses)
   D2 = interest_retrieve( Courses)
-  print(D2)
+#   print(D2)
   
   D3 = pd.DataFrame()
   if Major != None:
     Major = Major.lower()
     Major = Major.strip()
     D3 = focus_retrieve( Major)
-    print(D3)
+#     print(D3)
   
   D4 = pd.DataFrame()
   if Minor != None:
     Minor = Minor.lower()
     Minor = Minor.strip()
     D4 = Not_focus_retrieve( Minor)
-    print(D4)
-
-  Interests = preprocess( Interests)
-  print( Interests)
-  D5 = interest_retrieve( Interests)
-  print(D5)
+#     print(D4)
+  D5 = pd.DataFrame()
+  if len(Interests) > 2:
+    Interests = preprocess( Interests)
+#   print( Interests)
+    D5 = interest_retrieve( Interests)
+#   print(D5)
 
   D6 = Level_retrieve( Levels)
-  print(D6)
+#   print(D6)
 
   D7 = Credits_retreive(Credits)
 
@@ -352,7 +353,7 @@ def func( Branches, Interests, Major, Minor, Levels, Courses, Credits):
 
   l2 = list(l2)+list(l5)
   
-  l = [l1,l2,l3,l4,l5,l7]
+  l = [l1,l2,l3,l4,l6,l7]
   f = []
   for i in l:
     if len(i)!=0:
