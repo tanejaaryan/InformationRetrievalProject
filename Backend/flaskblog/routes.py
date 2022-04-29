@@ -16,7 +16,10 @@ def home():
 def my_form_post():
     variable = request.form['variable']
     output = func(variable)
-    return render_template('home.html', output = output)
+    form = RegistrationForm()
+    user = User(username=form.username.data, email=form.email.data, roll_number=form.roll_number.data, 
+        branch = form.branch.data, courses_done = form.courses_done.data, password=hashed_password)
+    return render_template('home.html', output = output, form = form)
 
 @app.route('/result/result')
 def analysis(x):
@@ -60,8 +63,11 @@ def about():
     #exclude = None
     major_comp = None
     minor_comp = None
+    form = RegistrationForm()
+    user = User(username=form.username.data, email=form.email.data, roll_number=form.roll_number.data, 
+        branch = form.branch.data, courses_done = form.courses_done.data)
     if request.method == 'POST':
-        print("segrfd")
+        #print("segrfd")
         branch = request.form.getlist('Branch')
         level = request.form.getlist('Level')
         credits = request.form.getlist('Credits')
@@ -78,9 +84,9 @@ def about():
 
         df = func(branch, interests, major_comp, minor_comp, level, prev_courses, credits)
         print(df)
-        return analysis(df)
+        return render_template("result.html",name="result", data=df.to_html(), form = form)
         #return render_template('about.html',  tables=[df.to_html(classes='data')], titles=df.columns.values)
-    return render_template('about.html', title='about')
+    return render_template('about.html', title='about', form = form)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
